@@ -1,6 +1,8 @@
+//TODO : Protocol Inclusion
+
 // Set up the download trigger
 chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
-    alert(downloadItem.url);
+//    alert(downloadItem.url);
     add_aria2_remote_task(downloadItem.url);
     chrome.downloads.cancel(downloadItem.id, function () {});
 });
