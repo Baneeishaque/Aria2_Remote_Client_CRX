@@ -3,9 +3,8 @@
 // Set up the download trigger
 chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
     console.log("Download URL : "+downloadItem.url);
-//    alert(downloadItem.url);
     add_aria2_remote_task(downloadItem.url);
-    chrome.downloads.cancel(downloadItem.id, function () {});
+    chrome.downloads.cancel(downloadItem.id, download_cancel_callback);
 });
 
 // Set up the context menus
@@ -14,6 +13,15 @@ chrome.contextMenus.create({
     "contexts": ["selection", "image", "link"],
     "onclick": generate_url_and_add_aria2_remote_task
 });
+
+function download_cancel_callback() {
+    if (chrome.runtime.lastError) {
+        console.log("Download Cancel Error : "+chrome.runtime.lastError.message);
+    } else {
+        // Download cancel success
+        console.log("Download Cancel Success...")
+    }
+}
 
 function generate_url_and_add_aria2_remote_task(e) {
     
@@ -49,7 +57,6 @@ function add_aria2_remote_task(url)
     PostUrl += encodeURIComponent(url);
 
     console.log("Post URL : "+PostUrl);
-    // alert(PostUrl);
 
     //TODO : Post in background
     // Open the page up.
