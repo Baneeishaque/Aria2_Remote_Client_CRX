@@ -2,9 +2,11 @@
   "name": "aria2_remote_client",
   "version": "2.1.0",
   "description": "Adds an Aria2 Remote task from google Chrome.",
-  "main": "background.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-copy": "^1.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
