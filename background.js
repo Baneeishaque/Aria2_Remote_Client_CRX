@@ -56,39 +56,27 @@ function generate_url_and_add_aria2_remote_task(e) {
 
 function add_aria2_remote_task(url)
 {
-    var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task.php?url=";
+//    var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task.php?url=";
+    var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task_patch.php?url=";
 
-    //TODO : Encript URL instead of replace
+    //TODO : Encode URL instead of replace
 //    url = url.replace("https://", "");
 //    url = url.replace("http://", "");
 //    url = url.replace("ftps://", "");
 //    url = url.replace("ftp://", "");
 
     console.log("Download URL : " + url);
-
-//    PostUrl += encodeURIComponent(url);
+    
+    url=btoa(url);
+    console.log("Encoded Download URL : " + url);
+    
     PostUrl += url;
+//    PostUrl += encodeURIComponent(url);
 
     console.log("Post URL : " + PostUrl);
 
-    // Encrypt
-//    var ciphertext = CryptoJS.DES.encrypt('Test', 'Key');
-//    console.log("Cipher of \"Test \" Using \"Key\" : " + ciphertext.toString());
-//
-//    // Decrypt
-//    var bytes = CryptoJS.DES.decrypt(ciphertext.toString(), 'Key');
-//    console.log("Decode of " + ciphertext.toString() + " Using \"Key\" : " + bytes.toString(CryptoJS.enc.Utf8));
-    
-    // Encrypt
-    var ciphertext = CryptoJS.DES.encrypt(PostUrl, 'Key');
-    console.log("Cipher of "+PostUrl+" Using \"Key\" : " + ciphertext.toString());
-
-    // Decrypt
-    var bytes = CryptoJS.DES.decrypt(ciphertext.toString(), 'Key');
-    console.log("Decode of " + ciphertext.toString() + " Using \"Key\" : " + bytes.toString(CryptoJS.enc.Utf8));
-
     //TODO : Post in background
     // Open the page up.
-//    chrome.tabs.create(
-//            {"url": PostUrl});
+    chrome.tabs.create(
+            {"url": PostUrl});
 }
