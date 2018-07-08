@@ -3,13 +3,16 @@
 // Set up the download trigger
 chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
 
-    if (chrome.runtime.lastError) {
-        console.log("Last Error : " + chrome.runtime.lastError.message);
-    } else {
-        // No Last Error
-        console.log("Download URL : " + downloadItem.url);
-        add_aria2_remote_task(downloadItem.url);
+    console.log("Download State : " + downloadItem.state);
+
+    //TODO : Fix Download must be in progress error
+    if (downloadItem.state === "in_progress") {
+        console.log("Download URL : " + downloadItem.url + " & Final Download URL : " + downloadItem.finalUrl);
+        add_aria2_remote_task(downloadItem.finalUrl);
         chrome.downloads.cancel(downloadItem.id, download_cancel_callback);
+    } else {
+        // Not in progress
+        console.log("Error : Download URL : " + downloadItem.url + " & Final Download URL : " + downloadItem.finalUrl + " not in progress");
     }
 
 });
@@ -55,11 +58,13 @@ function add_aria2_remote_task(url)
 {
     var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task.php?url=";
 
-    //TODO : Encode URL instead of replace
-    url = url.replace("https://", "");
-    url = url.replace("http://", "");
-    url = url.replace("ftps://", "");
-    url = url.replace("ftp://", "");
+    //TODO : Encript URL instead of replace
+//    url = url.replace("https://", "");
+//    url = url.replace("http://", "");
+//    url = url.replace("ftps://", "");
+//    url = url.replace("ftp://", "");
+
+    console.log("Download URL : " + url);
 
     PostUrl += encodeURIComponent(url);
 
@@ -67,6 +72,6 @@ function add_aria2_remote_task(url)
 
     //TODO : Post in background
     // Open the page up.
-    chrome.tabs.create(
-            {"url": PostUrl});
+//    chrome.tabs.create(
+//            {"url": PostUrl});
 }
