@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Aria2 Remote Client",
-    "version": "0.1",
+    "version": "2.0",
     "background": {
         "scripts": ["background.js"]
     },

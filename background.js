@@ -2,6 +2,7 @@
 
 // Set up the download trigger
 chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
+    console.log("Download URL : "+downloadItem.url);
 //    alert(downloadItem.url);
     add_aria2_remote_task(downloadItem.url);
     chrome.downloads.cancel(downloadItem.id, function () {});
@@ -39,6 +40,7 @@ function add_aria2_remote_task(url)
 {
     var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task.php?url=";
 
+    //TODO : Encode URL instead of replace
     url = url.replace("https://", "");
     url = url.replace("http://", "");
     url = url.replace("ftps://", "");
@@ -46,8 +48,10 @@ function add_aria2_remote_task(url)
 
     PostUrl += encodeURIComponent(url);
 
+    console.log("Post URL : "+PostUrl);
     // alert(PostUrl);
 
+    //TODO : Post in background
     // Open the page up.
     chrome.tabs.create(
             {"url": PostUrl});
