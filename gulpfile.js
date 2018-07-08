@@ -1,21 +1,42 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 var gulp = require('gulp');
 
-gulp.task('default', function () {
-    // place code for your default task here
-});
-
-gulp.task('copy_crx_script', function () {
+gulp.task('copy_crx_script', function (done) {
     gulp.src('background.js')
-        .pipe(gulp.dest('C:/Programs/Aria2_Remote_Client/'));
+            .pipe(gulp.dest('C:/Programs/Aria2_Remote_Client/'));
+    done();
 });
 
-gulp.task('copy_crx_manifest', function () {
+gulp.task('copy_crx_manifest', function (done) {
     gulp.src('manifest.json')
-        .pipe(gulp.dest('C:/Programs/Aria2_Remote_Client/'));
+            .pipe(gulp.dest('C:/Programs/Aria2_Remote_Client/'));
+    done();
+});
+
+gulp.task('copy_crx', gulp.parallel('copy_crx_script', 'copy_crx_manifest', function (done) {
+    done();
+}));
+
+gulp.task('default', function () {
+
+    var watcher_manifest = gulp.watch('manifest.json', gulp.parallel('copy_crx_manifest', function (done) {
+        done();
+    }));
+    watcher_manifest.on('change', function (path, stats) {
+        console.log('File ' + path + ' was changed');
+    });
+    watcher_manifest.on('unlink', function (path, stats) {
+        console.log('File ' + path + ' was removed');
+    });
+
+    var watcher_script = gulp.watch('background.js', gulp.parallel('copy_crx_script', function (done) {
+        done();
+    }));
+    watcher_script.on('change', function (path, stats) {
+        console.log('File ' + path + ' was changed');
+    });
+    watcher_script.on('unlink', function (path, stats) {
+        console.log('File ' + path + ' was removed');
+    });
+
 });
