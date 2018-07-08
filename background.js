@@ -19,7 +19,7 @@ function download_cancel_callback() {
         console.log("Download Cancel Error : "+chrome.runtime.lastError.message);
     } else {
         // Download cancel success
-        console.log("Download Cancel Success...")
+        console.log("Download Cancel Success...");
     }
 }
 
