@@ -66,9 +66,26 @@ function add_aria2_remote_task(url)
 
     console.log("Download URL : " + url);
 
-    PostUrl += encodeURIComponent(url);
+//    PostUrl += encodeURIComponent(url);
+    PostUrl += url;
 
     console.log("Post URL : " + PostUrl);
+
+    // Encrypt
+//    var ciphertext = CryptoJS.DES.encrypt('Test', 'Key');
+//    console.log("Cipher of \"Test \" Using \"Key\" : " + ciphertext.toString());
+//
+//    // Decrypt
+//    var bytes = CryptoJS.DES.decrypt(ciphertext.toString(), 'Key');
+//    console.log("Decode of " + ciphertext.toString() + " Using \"Key\" : " + bytes.toString(CryptoJS.enc.Utf8));
+    
+    // Encrypt
+    var ciphertext = CryptoJS.DES.encrypt(PostUrl, 'Key');
+    console.log("Cipher of "+PostUrl+" Using \"Key\" : " + ciphertext.toString());
+
+    // Decrypt
+    var bytes = CryptoJS.DES.decrypt(ciphertext.toString(), 'Key');
+    console.log("Decode of " + ciphertext.toString() + " Using \"Key\" : " + bytes.toString(CryptoJS.enc.Utf8));
 
     //TODO : Post in background
     // Open the page up.

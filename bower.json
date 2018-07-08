@@ -1,0 +1,24 @@
+{
+  "name": "aria2_remote_client",
+  "description": "Adds an Aria2 Remote task from google Chrome.",
+  "main": "",
+  "authors": [
+    "Banee Ishaque K"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "aria2",
+    "google-chrome"
+  ],
+  "homepage": "https://github.com/Baneeishaque/Add_to_downloads_CRX",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "crypto-js": "^3.1.9"
+  }
+}
