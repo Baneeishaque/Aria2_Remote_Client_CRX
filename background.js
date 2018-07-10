@@ -1,4 +1,8 @@
 //TODO : Clean code
+//TDOD : Set local/remote default
+//TODO : Choose local/remote option
+//TODO : Choose remote server option (if no default remote server) - display servers with available disks & their free spaces
+//TODO : set Default remote server
 
 // Set up the download trigger
 chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
