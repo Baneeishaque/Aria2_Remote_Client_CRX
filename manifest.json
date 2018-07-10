@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Aria2 Remote Client",
-    "version": "2.11",
+    "version": "2.12",
     "background": {
         "scripts": ["bower_components/crypto-js/crypto-js.js","background.js"]
     },

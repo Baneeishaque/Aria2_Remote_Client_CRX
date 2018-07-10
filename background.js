@@ -64,16 +64,42 @@ function add_aria2_remote_task(url)
 //    var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task_patch.php?url=";
 
     console.log("Download URL : " + url);
-    
-    url=btoa(url);
+
+    url = btoa(url);
     console.log("Encoded Download URL : " + url);
-    
+
     PostUrl += url;
 
     console.log("Post URL : " + PostUrl);
 
     //TODO : Post in background
     // Open the page up.
-    chrome.tabs.create(
-            {"url": PostUrl});
+//    chrome.tabs.create(
+//            {"url": PostUrl});
+
+//    var xhr = new XMLHttpRequest();
+//    xhr.open('GET', PostUrl, true);
+//    xhr.onload = function () {
+//        console.log("From xhr, Post URL : " + PostUrl);
+//    };
+
+    simpleHttpRequest(PostUrl, console.log, console.log);
+}
+
+function simpleHttpRequest(url, success, failure) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+
+            console.log("Response Headers : " + request.getAllResponseHeaders());
+            console.log("Response : " + request.responseText);
+
+            if (request.status === 200)
+                success("Success, Response : " + request.responseText);
+            else if (failure)
+                failure("Failure, Request Status : " + request.status +", Response : " +request.statusText);
+        }
+    };
 }
