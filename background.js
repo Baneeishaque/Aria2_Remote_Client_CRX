@@ -58,17 +58,17 @@ function generate_url_and_add_aria2_remote_task(e) {
     add_aria2_remote_task(url);
 }
 
-function add_aria2_remote_task(url)
+function add_aria2_remote_task(download_url)
 {
     var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task.php?url=";
 //    var PostUrl = "http://vfmob.com.md-in-64.webhostbox.net/wp-production/aria2_remote_server/http_API/insert_Task_patch.php?url=";
 
-    console.log("Download URL : " + url);
+    console.log("Download URL : " + download_url);
 
-    url = btoa(url);
-    console.log("Encoded Download URL : " + url);
+    download_url = btoa(download_url);
+    console.log("Encoded Download URL : " + download_url);
 
-    PostUrl += url;
+    PostUrl += download_url;
 
     console.log("Post URL : " + PostUrl);
 
@@ -83,12 +83,15 @@ function add_aria2_remote_task(url)
 //        console.log("From xhr, Post URL : " + PostUrl);
 //    };
 
-    simpleHttpRequest(PostUrl, console.log, console.log);
+//    simpleHttpRequest(PostUrl, console.log, console.log);
+    simpleHttpRequest(PostUrl,download_url);
 }
 
-function simpleHttpRequest(url, success, failure) {
+//function simpleHttpRequest(url, success, failure) {
+function simpleHttpRequest(post_url,download_url) {
+
     var request = new XMLHttpRequest();
-    request.open("GET", url, true);
+    request.open("GET", post_url, true);
     request.send(null);
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
@@ -96,10 +99,17 @@ function simpleHttpRequest(url, success, failure) {
             console.log("Response Headers : " + request.getAllResponseHeaders());
             console.log("Response : " + request.responseText);
 
-            if (request.status === 200)
-                success("Success, Response : " + request.responseText);
-            else if (failure)
-                failure("Failure, Request Status : " + request.status +", Response : " +request.statusText);
+            if (request.status === 200) {
+//                success("Success, Response : " + request.responseText);                
+                alert(request.responseText.replace(/\\n/g,"\n"));
+            }
+            else
+            {
+                alert("Failure for "+download_url+", Request Status : " + request.status + ", Response : " + request.statusText);
+            }
+//            else if (failure) {
+//                failure("Failure, Request Status : " + request.status + ", Response : " + request.statusText);
+//            }
         }
     };
 }
