@@ -170,9 +170,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aria2_remote_client@workspace:."
   dependencies:
-    grunt: ^1.0.3
-    grunt-contrib-copy: ^1.0.0
-    gulp: ^4.0.0
+    grunt: 1.4.1
+    grunt-contrib-copy: 1.0.0
+    gulp: 4.0.2
   languageName: unknown
   linkType: soft
 
@@ -1452,7 +1452,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"grunt-contrib-copy@npm:^1.0.0":
+"grunt-contrib-copy@npm:1.0.0":
   version: 1.0.0
   resolution: "grunt-contrib-copy@npm:1.0.0"
   dependencies:
@@ -1506,7 +1506,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"grunt@npm:^1.0.3":
+"grunt@npm:1.4.1":
   version: 1.4.1
   resolution: "grunt@npm:1.4.1"
   dependencies:
@@ -1559,7 +1559,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"gulp@npm:^4.0.0":
+"gulp@npm:4.0.2":
   version: 4.0.2
   resolution: "gulp@npm:4.0.2"
   dependencies:
