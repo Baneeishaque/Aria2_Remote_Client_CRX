@@ -11,27 +11,34 @@ chrome.downloads.onDeterminingFilename.addListener(function (downloadItem) {
 
     //TODO : Fix Download must be in progress error
     if (downloadItem.state === "in_progress") {
+    
         console.log("Download URL : " + downloadItem.url + " & Final Download URL : " + downloadItem.finalUrl);
         add_aria2_remote_task(downloadItem.finalUrl);
         chrome.downloads.cancel(downloadItem.id, download_cancel_callback);
+    
     } else {
+     
         // Not in progress
         console.log("Error : Download URL : " + downloadItem.url + " & Final Download URL : " + downloadItem.finalUrl + " not in progress");
     }
-
 });
 
 // Set up the context menus
 chrome.contextMenus.create({
+    
     "title": "Add to Downloads",
     "contexts": ["selection", "image", "link"],
     "onclick": generate_url_and_add_aria2_remote_task
 });
 
 function download_cancel_callback() {
+    
     if (chrome.runtime.lastError) {
+    
         console.log("Download Cancel Error : " + chrome.runtime.lastError.message);
+    
     } else {
+    
         // Download cancel success
         console.log("Download Cancel Success...");
     }
@@ -42,15 +49,18 @@ function generate_url_and_add_aria2_remote_task(e) {
     var url = e.pageUrl;
 
     if (e.selectionText) {
+   
         // The user selected some text.
         url = e.selectionText;
     }
 
     if (e.mediaType === "image") {
+   
         url = e.srcUrl;
     }
 
     if (e.linkUrl) {
+   
         // The user wants to buzz a link.
         url = e.linkUrl;
     }
@@ -94,17 +104,20 @@ function simpleHttpRequest(post_url,download_url) {
     request.open("GET", post_url, true);
     request.send(null);
     request.onreadystatechange = function () {
+   
         if (request.readyState === 4) {
 
             console.log("Response Headers : " + request.getAllResponseHeaders());
             console.log("Response : " + request.responseText);
 
             if (request.status === 200) {
+
 //                success("Success, Response : " + request.responseText);                
                 alert(request.responseText.replace(/\\n/g,"\n"));
             }
             else
             {
+            
                 alert("Failure for "+download_url+", Request Status : " + request.status + ", Response : " + request.statusText);
             }
 //            else if (failure) {
