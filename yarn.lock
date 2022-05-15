@@ -170,7 +170,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aria2_remote_client@workspace:."
   dependencies:
-    grunt: ^1.0.3
+    grunt: 1.5.3
     grunt-contrib-copy: ^1.0.0
     gulp: ^4.0.0
   languageName: unknown
@@ -1437,7 +1437,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"grunt-cli@npm:~1.4.2":
+"grunt-cli@npm:~1.4.3":
   version: 1.4.3
   resolution: "grunt-cli@npm:1.4.3"
   dependencies:
@@ -1506,16 +1506,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"grunt@npm:^1.0.3":
-  version: 1.4.1
-  resolution: "grunt@npm:1.4.1"
+"grunt@npm:1.5.3":
+  version: 1.5.3
+  resolution: "grunt@npm:1.5.3"
   dependencies:
     dateformat: ~3.0.3
     eventemitter2: ~0.4.13
     exit: ~0.1.2
     findup-sync: ~0.3.0
     glob: ~7.1.6
-    grunt-cli: ~1.4.2
+    grunt-cli: ~1.4.3
     grunt-known-options: ~2.0.0
     grunt-legacy-log: ~3.0.0
     grunt-legacy-util: ~2.0.1
@@ -1527,7 +1527,7 @@ fsevents@^1.2.7:
     rimraf: ~3.0.2
   bin:
     grunt: bin/grunt
-  checksum: 2c35479fa9ecce819968dbef95451f1c53b83423d737c778edfad827a55cb023dabdc74f93a276a750933d5adc07704f814549e1a75ab3c345dcde58a57125f5
+  checksum: 1265fa240d7e9fbaf6f40caf626f295f64d12a60e1fbb1adfaaf39f28af164dc8e6453729d0c74e8c4a24818f3a158164146074ace1909c02265d571f329f214
   languageName: node
   linkType: hard
 
